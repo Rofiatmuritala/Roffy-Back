@@ -9,6 +9,7 @@ import AchievementRoutes from "./routes/achievement_routes.js";
 import BlogRoutes from "./routes/blog_routes.js";
 import SkillRoutes from "./routes/skill_routes.js";
 import connectDB from "../config/db.js";
+import { errorHandlerMiddleware } from "./middlewares/error_middlewares.js";
 
 //Initializing the app
 const app = express();
@@ -30,6 +31,8 @@ app.use(ExperienceRoutes);
 app.use(AchievementRoutes);
 app.use(BlogRoutes);
 app.use(SkillRoutes);
+
+app.use(errorHandlerMiddleware);
 
 app.listen(PORT, async () => {
   await connectDB();
