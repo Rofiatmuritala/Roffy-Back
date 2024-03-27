@@ -1,9 +1,13 @@
 import router from "../routes/projects.js";
 import Project from "../models/Project.js";
 
-export const getAllProjects = async (req, res) => {
-  const projects = await Project.find();
-  res.json({ msg: "This is getting the project", projects: projects });
+export const getAllProjects = async (req, res, next) => {
+  try {
+    const projects = await Project.find();
+    res.json({ msg: "This is getting the project", projects: projects });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const getOneProject = async (req, res) => {

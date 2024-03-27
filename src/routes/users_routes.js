@@ -51,9 +51,9 @@ router.post("/api/users/login", async (req, res) => {
 
 export const registerAdmin = async () => {
   const adminInfo = {
-    name: "Aziz",
+    name: "Admin",
     password: "hello-password",
-    email: "aziz@gmail.com",
+    email: "admin@gmail.com",
   };
 
   const salt = bcrypt.genSaltSync(10);

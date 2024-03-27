@@ -12,15 +12,13 @@ const projectSchema = new mongoose.Schema({
   image: {
     type: String,
   },
-
   repoLink: {
     type: String,
-    required: [true, "The link of the repo is required"],
+    // required: [true, "The link of the repo is required"],
   },
-
   livedemo: {
     type: String,
-    required: [true, " The live demo link is required"],
+    // required: [true, "The live demo link is required"],
   },
 });
 

@@ -1,5 +1,5 @@
 import express from "express";
-import Project from "../models/Project.js";
+import { adminOnlyRouteMiddleware } from "../middlewares/user_middleware.js";
 import {
   UpdateOneProject,
   createProject,
@@ -18,12 +18,12 @@ router.get("/api/projects/:id", getOneProject);
 
 router.post("/api/projects", createProject);
 
-router.patch("/api/projects", updateProjects);
+// router.patch("/api/projects", adminOnlyRouteMiddleware, updateProjects);
 
-router.patch("/api/projects/:id", UpdateOneProject);
+router.patch("/api/projects/:id", adminOnlyRouteMiddleware, UpdateOneProject);
 
-router.delete("/api/projects/:id", deleteOneProject);
+router.delete("/api/projects/:id", adminOnlyRouteMiddleware, deleteOneProject);
 
-router.delete("/api/projects", deleteAllProjects);
+// router.delete("/api/projects", deleteAllProjects);
 
 export default router;
