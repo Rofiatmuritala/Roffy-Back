@@ -9,39 +9,19 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: [true, "The description of the project is required"],
   },
-  images: [
-    {
-      type: String,
-    },
-  ],
+  image: {
+    type: String,
+  },
 
-  repos: [
-    {
-      name: {
-        type: String,
-        required: [true, "The repo name is required"],
-      },
+  repoLink: {
+    type: String,
+    required: [true, "The link of the repo is required"],
+  },
 
-      link: {
-        type: String,
-        required: [true, "The link of the repo is required"],
-      },
-    },
-  ],
-
-  livedemo: [
-    {
-      name: {
-        type: String,
-        required: [true, "The livedemo name is required"],
-      },
-
-      link: {
-        type: String,
-        required: [true, " The live demo link is required"],
-      },
-    },
-  ],
+  livedemo: {
+    type: String,
+    required: [true, " The live demo link is required"],
+  },
 });
 
 const Project = mongoose.model("Project", projectSchema);
