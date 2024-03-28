@@ -3,7 +3,6 @@ import { adminOnlyRouteMiddleware } from "../middlewares/user_middleware.js";
 import {
   UpdateOneProject,
   createProject,
-  deleteAllProjects,
   deleteOneProject,
   getAllProjects,
   getOneProject,
@@ -15,14 +14,10 @@ router.get("/api/projects", getAllProjects);
 
 router.get("/api/projects/:id", getOneProject);
 
-router.post("/api/projects", createProject);
-
-// router.patch("/api/projects", adminOnlyRouteMiddleware, updateProjects);
+router.post("/api/projects", adminOnlyRouteMiddleware, createProject);
 
 router.patch("/api/projects/:id", adminOnlyRouteMiddleware, UpdateOneProject);
 
 router.delete("/api/projects/:id", adminOnlyRouteMiddleware, deleteOneProject);
-
-// router.delete("/api/projects", deleteAllProjects);
 
 export default router;
