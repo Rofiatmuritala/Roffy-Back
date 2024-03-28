@@ -1,26 +1,59 @@
-import { Achievements } from "../models/achievement.js";
+import { Achievement } from "../models/achievement.js";
 
 export const getAllAchievement = async (req, res) => {
-  const achieve = await Achievements.find({});
-  res.json({ achieve: achieve });
+  try {
+    const achievements = await Achievement.find({});
+    res.json({ achievements: achievements });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const getOneAchievement = async (req, res) => {
-  const getOneAchieve = await Achievements.findById(req.params.id);
-  res.json({ getOneAchieve: getOneAchieve });
+  try {
+    const achievement = await Achievement.findById(req.params.id);
+
+    if (!achievement) {
+      const error = new Error(
+        `Can't find achievement with the id of ${req.params.id}`
+      );
+
+      error.statusCode = 404;
+
+      return next(error);
+    }
+    res.json({ achievement: achievement });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const createAchievement = async (req, res) => {
-  const createAchieve = await Achievements.create(req.body);
-  res.json({ createAchieve: createAchieve });
+  try {
+    const achievement = await Achievement.create(req.body);
+    res.json({ achievement: achievement });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const updateOneAchievement = async (req, res) => {
-  const updateOneAchieve = await Achievements.findByIdAndUpdate(req.params.id);
-  res.json({ updateOneAchieve: updateOneAchieve });
+  try {
+    const achievement = await Achievement.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    res.json({ achievement: achievement });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const deleteOneAchievement = async (req, res) => {
-  const deleteOneAchieve = await Achievements.findByIdAndDelete(req.params.id);
-  res.json({ deleteOneAchieve: deleteOneAchieve });
+  try {
+    const deleteOneAchieve = await Achievement.findByIdAndDelete(req.params.id);
+    res.json({ deleteOneAchieve: deleteOneAchieve });
+  } catch (error) {
+    next(error);
+  }
 };

@@ -6,6 +6,7 @@ import {
   getOneAchievement,
   updateOneAchievement,
 } from "../controllers/achievement_controller.js";
+import { adminOnlyRouteMiddleware } from "../middlewares/user_middleware.js";
 
 const route = Router();
 
@@ -13,10 +14,18 @@ route.get("/api/achievement", getAllAchievement);
 
 route.get("/api/achievement/:id", getOneAchievement);
 
-route.post("/api/achievement", createAchievement);
+route.post("/api/achievement", adminOnlyRouteMiddleware, createAchievement);
 
-route.patch("/api/achievement/:id", updateOneAchievement);
+route.patch(
+  "/api/achievement/:id",
+  adminOnlyRouteMiddleware,
+  updateOneAchievement
+);
 
-route.delete("/api/achievement", deleteOneAchievement);
+route.delete(
+  "/api/achievement",
+  adminOnlyRouteMiddleware,
+  deleteOneAchievement
+);
 
 export default route;
