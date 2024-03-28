@@ -1,6 +1,6 @@
 import { Achievement } from "../models/achievement.js";
 
-export const getAllAchievement = async (req, res) => {
+export const getAllAchievement = async (req, res, next) => {
   try {
     const achievements = await Achievement.find({});
     res.json({ achievements: achievements });
@@ -9,7 +9,7 @@ export const getAllAchievement = async (req, res) => {
   }
 };
 
-export const getOneAchievement = async (req, res) => {
+export const getOneAchievement = async (req, res, next) => {
   try {
     const achievement = await Achievement.findById(req.params.id);
 
@@ -28,7 +28,7 @@ export const getOneAchievement = async (req, res) => {
   }
 };
 
-export const createAchievement = async (req, res) => {
+export const createAchievement = async (req, res, next) => {
   try {
     const achievement = await Achievement.create(req.body);
     res.json({ achievement: achievement });
@@ -37,7 +37,7 @@ export const createAchievement = async (req, res) => {
   }
 };
 
-export const updateOneAchievement = async (req, res) => {
+export const updateOneAchievement = async (req, res, next) => {
   try {
     const achievement = await Achievement.findByIdAndUpdate(
       req.params.id,
@@ -49,7 +49,7 @@ export const updateOneAchievement = async (req, res) => {
   }
 };
 
-export const deleteOneAchievement = async (req, res) => {
+export const deleteOneAchievement = async (req, res, next) => {
   try {
     const deleteOneAchieve = await Achievement.findByIdAndDelete(req.params.id);
     res.json({ deleteOneAchieve: deleteOneAchieve });

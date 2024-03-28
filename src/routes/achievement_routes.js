@@ -10,20 +10,20 @@ import { adminOnlyRouteMiddleware } from "../middlewares/user_middleware.js";
 
 const route = Router();
 
-route.get("/api/achievement", getAllAchievement);
+route.get("/api/achievements", getAllAchievement);
 
-route.get("/api/achievement/:id", getOneAchievement);
+route.get("/api/achievements/:id", getOneAchievement);
 
-route.post("/api/achievement", adminOnlyRouteMiddleware, createAchievement);
+route.post("/api/achievements", adminOnlyRouteMiddleware, createAchievement);
 
 route.patch(
-  "/api/achievement/:id",
+  "/api/achievements/:id",
   adminOnlyRouteMiddleware,
   updateOneAchievement
 );
 
 route.delete(
-  "/api/achievement",
+  "/api/achievements/:id",
   adminOnlyRouteMiddleware,
   deleteOneAchievement
 );
