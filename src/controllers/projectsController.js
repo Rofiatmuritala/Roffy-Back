@@ -1,4 +1,3 @@
-import router from "../routes/projects.js";
 import Project from "../models/Project.js";
 
 export const getAllProjects = async (req, res, next) => {
@@ -11,39 +10,65 @@ export const getAllProjects = async (req, res, next) => {
 };
 
 export const getOneProject = async (req, res) => {
-  const project = await Project.findById(req.params.id);
-  res
-    .status(200)
-    .json({ msg: `This is getting by id ${req.params.id}`, project: project });
+  try {
+    const project = await Project.findById(req.params.id);
+
+    if (!project) {
+      const error = new Error(
+        `Can't find project with the id of ${req.params.id}`
+      );
+
+      error.statusCode = 404;
+
+      return next(error);
+    }
+    res.status(200).json({
+      msg: `This is getting by id ${req.params.id}`,
+      project: project,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const createProject = async (req, res) => {
-  const project = await Project.create(req.body);
-  res.json({ msg: "This is adding the project", project: project });
-};
-
-export const updateProjects = async (req, res) => {
-  const project = await Project.updateMany(req.body);
-  res.json({ msg: "This is updating the project", project: project });
+  try {
+    const project = await Project.create(req.body);
+    res.json({ msg: "This is adding the project", project: project });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const UpdateOneProject = async (req, res) => {
-  const project = await Project.updateOne(req.body);
-  res.json({
-    msg: `This is updating one the project ${req.params.id}`,
-    project: project,
-  });
+  try {
+    const project = await Project.findByIdAndUpdate(req.params.id, req.body);
+    res.json({
+      msg: `This is updating one the project ${req.params.id}`,
+      project: project,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const deleteOneProject = async (req, res) => {
-  const project = await Project.findByIdAndDelete(req.body);
-  res.json({
-    msg: `This is deleting the project${req.params.id} `,
-    project: project,
-  });
+  try {
+    const project = await Project.findByIdAndDelete(req.params.id);
+    res.json({
+      msg: `This is deleting the project${req.params.id} `,
+      project: project,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const deleteAllProjects = async (req, res) => {
-  const project = await Project.deleteMany();
-  res.json({ msg: "This is deleting the project" });
+  try {
+    const project = await Project.deleteMany();
+    res.json({ msg: "This is deleting the project" });
+  } catch (error) {
+    next(error);
+  }
 };

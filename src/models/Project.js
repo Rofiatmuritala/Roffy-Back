@@ -16,7 +16,7 @@ const projectSchema = new mongoose.Schema({
     type: String,
     // required: [true, "The link of the repo is required"],
   },
-  livedemo: {
+  liveDemo: {
     type: String,
     // required: [true, "The live demo link is required"],
   },

@@ -7,7 +7,6 @@ import {
   deleteOneProject,
   getAllProjects,
   getOneProject,
-  updateProjects,
 } from "../controllers/projectsController.js";
 
 const router = express.Router();
