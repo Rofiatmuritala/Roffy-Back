@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const experienceSchema = new mongoose.Schema({
   startDate: {
-    type: String,
+    type: Date,
     required: [true, "The start date is required"],
   },
   endDate: {
-    type: String,
+    type: Date,
     required: [true, "The end date is required"],
   },
   role: {
