@@ -32,6 +32,8 @@ app.use(AchievementRoutes);
 app.use(BlogRoutes);
 app.use(SkillRoutes);
 
+// registerAdmin()
+
 app.use(errorHandlerMiddleware);
 
 app.listen(PORT, async () => {
