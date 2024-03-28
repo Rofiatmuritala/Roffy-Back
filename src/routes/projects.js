@@ -14,10 +14,10 @@ router.get("/api/projects", getAllProjects);
 
 router.get("/api/projects/:id", getOneProject);
 
-router.post("/api/projects", adminOnlyRouteMiddleware, createProject);
+router.post("/api/projects", createProject);
 
-router.patch("/api/projects/:id", adminOnlyRouteMiddleware, UpdateOneProject);
+router.patch("/api/projects/:id", UpdateOneProject);
 
-router.delete("/api/projects/:id", adminOnlyRouteMiddleware, deleteOneProject);
+router.delete("/api/projects/:id", deleteOneProject);
 
 export default router;

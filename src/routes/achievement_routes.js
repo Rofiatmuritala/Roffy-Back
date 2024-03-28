@@ -14,18 +14,10 @@ route.get("/api/achievements", getAllAchievement);
 
 route.get("/api/achievements/:id", getOneAchievement);
 
-route.post("/api/achievements", adminOnlyRouteMiddleware, createAchievement);
+route.post("/api/achievements", createAchievement);
 
-route.patch(
-  "/api/achievements/:id",
-  adminOnlyRouteMiddleware,
-  updateOneAchievement
-);
+route.patch("/api/achievements/:id", updateOneAchievement);
 
-route.delete(
-  "/api/achievements/:id",
-  adminOnlyRouteMiddleware,
-  deleteOneAchievement
-);
+route.delete("/api/achievements/:id", deleteOneAchievement);
 
 export default route;
